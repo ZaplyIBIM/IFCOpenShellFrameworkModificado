@@ -1,3 +1,10 @@
+
+"""
+
+Clase geometry que se encarga del tratado de geometría básica
+
+"""
+
 from .ifcFiles import IfcFiles
 import json
 

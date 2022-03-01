@@ -1,5 +1,11 @@
+"""
+
+Clase Files que se encarga del tratado con conjuntos de archivos de tipo IFC
+
+"""
+
+
 import glob
-import uuid
 from .ifcFile import IfcFile
 
 

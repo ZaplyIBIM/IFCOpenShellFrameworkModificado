@@ -1,3 +1,8 @@
+"""
+
+Clase general que se encarga de proporcionar acceso a los diferentes métodos de la librería
+
+"""
 
 from app.lib.IFC_IBIM_Library.geometry import Geometry
 from .ifcFiles import IfcFiles

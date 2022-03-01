@@ -1,3 +1,11 @@
+
+"""
+
+Clase Face que se encarga del cálculo de datos de las caras
+
+"""
+
+
 import numpy as np
 from geometer import *
 import json
