@@ -5,7 +5,6 @@ Clase File que se encarga del tratado de archivos IFC
 
 """
 
-
 import ifcopenshell
 import ifcopenshell.api
 import ifcopenshell.util

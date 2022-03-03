@@ -6,7 +6,7 @@ Clase Files que se encarga del tratado con conjuntos de archivos de tipo IFC
 
 
 import glob
-from .ifcFile import IfcFile
+from .ifcfile import IfcFile
 
 
 class IfcFiles(list):
