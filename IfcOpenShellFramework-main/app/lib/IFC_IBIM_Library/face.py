@@ -21,26 +21,26 @@ class Face:
     if(not hasattr(self,'_polygons')):
       self._polygons = [];
       for i in range(0,len(self.vertices),3):
-        newPolygon = Polygon(self.vertices[i], self.vertices[i+1], self.vertices[i+2]);
-        self._polygons.append(newPolygon);
+        new_polygon = Polygon(self.vertices[i], self.vertices[i+1], self.vertices[i+2]);
+        self._polygons.append(new_polygon);
     return self._polygons;
 
   @property
-  def totalArea(self):
+  def total_area(self):
     if(not hasattr(self,'_totalArea')):
-      self._totalArea = 0.0;
+      self._total_area = 0.0;
       for poly in self.polygons:
-        self._totalArea += poly.area;
-    return self._totalArea;
+        self._total_area += poly.area;
+    return self._total_area;
 
-  def addVertices(self, newVertices):
-    for vert in newVertices:
+  def add_vertices(self, new_vertices):
+    for vert in new_vertices:
       """if(not vert in self.vertices): """
       self.vertices.append(vert);
   
-  def toJson(self):
+  def to_json(self):
     return {
-      "TotalArea" : self.totalArea,
+      "TotalArea" : self.total_area,
       "Tensor": str(self.tensor)
     }
     """     return json.dumps(self, default= lambda thisObj: thisObj.__dict__) """
