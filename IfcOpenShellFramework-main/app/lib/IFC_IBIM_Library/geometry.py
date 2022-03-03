@@ -34,7 +34,7 @@ class Geometry:
       file_name = model['ifc'];
       guids = model['guids'];
 
-      file_search = ifcfiles.getSpecificFile(guid_models, file_name);
+      file_search = ifcfiles.get_specific_file(guid_models, file_name);
       if(file_search != None):
         for guid in guids:
           results.append(file_search.get_all_faces(guid));

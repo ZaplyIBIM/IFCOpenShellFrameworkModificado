@@ -16,7 +16,7 @@ def create_app():
     #Inicializar extensiones y su configuración
 
     #Registra el BluePrint principal
-    app.register_blueprint(ifcOpenShellFramework, url_prefix='/ifcopenshell')
+    app.register_blueprint(ifcOpenShellFramework, url_prefix='/v1/ifcopenshell')
 
     #Registrar manejadores de errores personalizados (En desarrollo)
     register_error_handlers(app)

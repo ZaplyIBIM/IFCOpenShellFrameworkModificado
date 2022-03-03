@@ -10,7 +10,7 @@ import numpy as np
 from geometer import *
 import json
 
-class Face:
+class face:
   # ctor-initializer
   def __init__(self, tensor, vertices):
     self.tensor = tensor;

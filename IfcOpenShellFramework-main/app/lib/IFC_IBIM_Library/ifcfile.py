@@ -16,7 +16,7 @@ from shapely.ops import triangulate
 import shapely.geometry
 from geometer import *
 import numpy as np
-from .face import Face
+from .face import face
 import ifcopenshell.geom as geom
 import ifcpatch
 import ifcopenshell.template
@@ -27,7 +27,7 @@ class ifcfile:
   # ctor
   def __init__(self, url):
     self.ifcfile = ifcopenshell.open(url);
-    self.header = self.ifcFile.header;
+    self.header = self.ifcfile.header;
     """ possibleName = self.header.file_name.name; """
     url_parsed = urlparse(url);
     self.file_name = os.path.basename(url_parsed.path);  
@@ -43,7 +43,7 @@ class ifcfile:
   def get_geom_of_specific_ifcelement(self, guid_instance):
     ifcinst = self.ifcfile.by_guid(guid_instance);
     if(ifcinst.Representation != None):
-      shape = geom.create_shape(self.settingsGeom, ifcinst)
+      shape = geom.create_shape(self.settings_geom, ifcinst)
       # ios stands for IfcOpenShell
       ios_vertices = shape.geometry.verts
       ios_edges = shape.geometry.edges
@@ -82,15 +82,15 @@ class ifcfile:
         "Points": points_tuple
         };
 
-  def getAllFaces(self, guid_instance):
+  def get_all_faces(self, guid_instance):
     geom_inst = self.get_geom_of_specific_ifcelement(guid_instance);
     if(geom_inst != None):
       faces = [];
-      for face in geom_inst['Faces']:
+      for face_geom in geom_inst['Faces']:
         try:
-          point_one_str = geom_inst['Vertices'][face[0]];
-          point_two_str = geom_inst['Vertices'][face[1]];
-          point_three_str = geom_inst['Vertices'][face[2]];
+          point_one_str = geom_inst['Vertices'][face_geom[0]];
+          point_two_str = geom_inst['Vertices'][face_geom[1]];
+          point_three_str = geom_inst['Vertices'][face_geom[2]];
           point_one = Point(point_one_str[0],point_one_str[1],point_one_str[2]);
           point_two = Point(point_two_str[0],point_two_str[1],point_two_str[2]);
           point_three = Point(point_three_str[0],point_three_str[1],point_three_str[2]);
@@ -99,16 +99,15 @@ class ifcfile:
           #basis_matrix = plane.basis_matrix;
           """normals.append({face : basisMatrix}); """
           new_tensor = plane.T.array;
-          
           flag = False;
-          for face in faces:
-            if(np.allclose(face.tensor, new_tensor)):
-              face.addVertices(points);
+          for face_added in faces:
+            if(np.allclose(face_added.tensor, new_tensor)):
+              face_added.add_vertices(points);
               flag = True;
               break;
 
           if(not flag):
-            faces.append(Face(new_tensor,points));
+            faces.append(face(new_tensor,points));
         except:
           pass;
       
@@ -116,7 +115,7 @@ class ifcfile:
       for face in faces:
         jsonReturn.append(json.dumps()) """
       
-      return json.dumps([face.toJson() for face in faces]);
+      return json.dumps([face.to_json() for face in faces]);
   
   def transform_civil_file(self):
     all_cartesian_points = self.ifcfile.by_type('IfcCartesianPoint');

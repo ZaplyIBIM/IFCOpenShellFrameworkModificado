@@ -21,7 +21,7 @@ class ifcopenshell_generic(Geometry):
   def close(self, guid_models): 
     ifcfiles.close_ifcs(guid_models);
 
-  def transform_civil_ifc(self,guid_models, bodyJson):
+  def transform_civil_ifc(self, guid_models, bodyJson):
     model_names = bodyJson['models'];
     for model_name in model_names:
       file_search = ifcfiles.get_specific_file(guid_models, model_name);

@@ -6,7 +6,7 @@ Clase Files que se encarga del tratado con conjuntos de archivos de tipo IFC
 
 
 import glob
-from .ifcfile import IfcFile
+from .ifcfile import ifcfile
 
 
 class ifcfiles(list):
@@ -26,15 +26,15 @@ class ifcfiles(list):
     if not hasattr(self,'guid_files'):
       all_ifc_files_paths = glob.glob(f'{url_folder}/*.ifc');
       for ifc_file_path in all_ifc_files_paths:
-        ifc_file_extended = IfcFile(ifc_file_path);
+        ifc_file_extended = ifcfile(ifc_file_path);
         self.append(ifc_file_extended);
       self.guid_files = guid_models;
       self.url = url_folder;
-      ifcfiles.ifc_models_loaded.append(self);
+      ifcfiles.ifcModelsLoaded.append(self);
 
   # methods 
   def close_ifcs(guid_models): 
-    ifcfiles.ifc_models_loaded = list(filter(lambda ifcmodels: str(ifcmodels.guid_files) != guid_models, ifcfiles.ifcModelsLoaded))
+    ifcfiles.ifcModelsLoaded = list(filter(lambda ifcmodels: str(ifcmodels.guid_files) != guid_models, ifcfiles.ifcModelsLoaded))
 
   def get_specific_file(guid_models, file_name):
     files = next(filter(lambda ifcmodels: str(ifcmodels.guid_files) == guid_models, ifcfiles.ifcModelsLoaded), None);
