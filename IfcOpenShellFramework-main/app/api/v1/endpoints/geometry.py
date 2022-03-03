@@ -18,19 +18,19 @@ endpoints_geometry = Blueprint('geometry', __name__)
 @endpoints_geometry.route('/boundarygeominstance/<guidmodels>', methods=['POST'])
 def boundarygeominstance(guidmodels):
   data = request.get_json();  
-  results = ifcOpenShellExtObj.getBoundaryGeomInstance(guidmodels,data);
+  results = ifcOpenShellExtObj.get_boundary_geom_instance(guidmodels,data);
   return make_response(str(results),200);
 
 #EndPoint de la geometría básica del modelo pasado (POST)
 @endpoints_geometry.route('/basicgeominstance/<guidmodels>', methods=['POST'])
 def basicgeominstance(guidmodels):
   data = request.get_json();  
-  results = ifcOpenShellExtObj.getBasicGeomInstance(guidmodels,data);
+  results = ifcOpenShellExtObj.get_basic_geom_instance(guidmodels,data);
   return make_response(str(results),200);
 
 #EndPoint de las caras del modelo pasado (POST)
 @endpoints_geometry.route('/allfaces/<guidmodels>', methods=['POST'])
 def getAllFaces(guidmodels):
   data = request.get_json();  
-  results = ifcOpenShellExtObj.getAllFaces(guidmodels,data);
+  results = ifcOpenShellExtObj.get_all_faces(guidmodels,data);
   return make_response(str(results),200);
