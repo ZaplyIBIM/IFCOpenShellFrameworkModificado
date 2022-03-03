@@ -19,5 +19,5 @@ endpoints_converter = Blueprint('converter', __name__)
 @endpoints_converter.route('/transformcivilifc/<guidmodels>', methods=['POST'])
 def transformCivilIfc(guidmodels):
   data = request.get_json();  
-  results = ifcOpenShellExtObj.transformCivilIfc(guidmodels,data);
+  results = ifcOpenShellExtObj.transform_civil_file(guidmodels,data);
   return make_response(results,200);
